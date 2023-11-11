@@ -1,5 +1,6 @@
 import { strict as assert } from 'assert';
 import Decoder from './decoder';
+import { Buffer } from 'buffer';
 
 describe('lib/decoder', () => {
   describe('decodeByType()', () => {
