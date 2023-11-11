@@ -56,5 +56,8 @@
     "format:check": "prettier --check src",
     "prepublish": "npm run build",
     "semantic-release": "semantic-release"
+  },
+  "dependencies": {
+    "buffer": "^6.0.3"
   }
 }
