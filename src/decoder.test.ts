@@ -102,7 +102,9 @@ describe('lib/decoder', () => {
       const inputStr = formatInput(tc.input);
       const expectedStr =
         tc.expected.length > 50
-          ? `<Buffer ${tc.expected.toString('hex', 0, 20)}... (${tc.expected.length} bytes)>`
+          ? `<Buffer ${tc.expected.toString('hex', 0, 20)}... (${
+              tc.expected.length
+            } bytes)>`
           : `<Buffer ${tc.expected.toString('hex')}>`;
 
       it(`should decode ${inputStr} to ${expectedStr}`, () => {
@@ -147,7 +149,9 @@ describe('lib/decoder', () => {
     ];
 
     for (const tc of testCases) {
-      it(`should decode ${JSON.stringify(tc.input.slice(1))} to ${tc.expected}`, () => {
+      it(`should decode ${JSON.stringify(tc.input.slice(1))} to ${
+        tc.expected
+      }`, () => {
         const decoder = new Decoder(Buffer.from(tc.input));
         assert.deepStrictEqual(decoder.decode(0).value, tc.expected);
       });
@@ -183,7 +187,9 @@ describe('lib/decoder', () => {
     ];
 
     for (const tc of testCases) {
-      it(`should decode ${JSON.stringify(tc.input.slice(2))} to approx ${tc.expected}`, () => {
+      it(`should decode ${JSON.stringify(tc.input.slice(2))} to approx ${
+        tc.expected
+      }`, () => {
         const decoder = new Decoder(Buffer.from(tc.input));
         assert.deepStrictEqual(decoder.decode(0).value, tc.expected);
       });
