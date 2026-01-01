@@ -19,13 +19,16 @@
   "devDependencies": {
     "@types/ip-address": "7.0.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "24.9.2",
-    "@types/sinon": "17.0.4",
-    "ip-address": "10.0.1",
-    "mocha": "^11.0.0",
-    "prettier": "^3.5.3",
-    "semantic-release": "^25.0.0",
-    "sinon": "21.0.0",
+    "@types/node": "20.9.0",
+    "@types/sinon": "17.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^8.0.0",
+    "ip-address": "9.0.5",
+    "mocha": "^10.2.0",
+    "prettier": "^3.0.0",
+    "release-it": "^17.0.0",
+    "sinon": "17.0.1",
     "ts-node": "^10.4.0",
     "typescript": "5.9.3"
   },
@@ -54,9 +57,28 @@
     "format": "prettier --write src",
     "format:check": "prettier --check src",
     "prepublish": "npm run build",
-    "semantic-release": "semantic-release"
+    "release": "release-it"
   },
   "dependencies": {
     "buffer": "^6.0.3"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): v${version}",
+      "tagName": "v${version}",
+      "requireCleanWorkingDir": true
+    },
+    "npm": {
+      "publish": true
+    },
+    "github": {
+      "release": true
+    },
+    "hooks": {
+      "before:init": [
+        "npm test",
+        "npm run build"
+      ]
+    }
   }
 }
