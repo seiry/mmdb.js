@@ -377,7 +377,9 @@ describe('lib/decoder', () => {
         ]);
       }
 
-      return Buffer.concat([padding, header, contentBuf]);
+      // Newer Node/TS typings make Buffer's underlying ArrayBuffer potentially
+      // `ArrayBufferLike` (incl. SharedArrayBuffer), so help inference here.
+      return Buffer.concat([padding, header, contentBuf] as Uint8Array[]);
     };
 
     const MAX_INT_32 = 2147483648;
