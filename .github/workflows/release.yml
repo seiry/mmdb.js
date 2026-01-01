@@ -1,27 +1,55 @@
-name: Release
+name: Publish
+
 on:
-  push:
-    branches:
-      - master
-jobs:
   release:
-    name: Release
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version-file: '.nvmrc'
+
+      - name: enable corepack
+        run: corepack enable
+
       - name: Install dependencies
-        run: npm i
-      - name: Build module
-        run: npm run build
-      - name: Release
+        run: npm install
+
+      - run: npm run build
+
+      # Publish to npmjs
+      - name: Publish to npmjs
+        run: npm publish --access public
+
+      # Publish to GitHub Packages (without committing package.json changes)
+      - name: Prepare package.json for GitHub Packages
+        run: |
+          jq '.name = "@seiry/mmdb.js"' package.json > package.tmp.json && mv package.tmp.json package.json
+
+      - name: Configure npm for GitHub Packages
+        run: |
+          echo "@seiry:registry=https://npm.pkg.github.com" >> ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> ~/.npmrc
+
+      - name: Publish to GitHub Packages
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm publish --registry=https://npm.pkg.github.com
+
+      - name: Restore package.json
+        run: git checkout -- package.json
