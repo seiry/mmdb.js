@@ -1,6 +1,6 @@
 {
   "name": "mmdb.js",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "homepage": "https://github.com/seiry/mmdb.js",
   "description": "Maxmind DB (MMDB) Library in JS",
   "keywords": [
