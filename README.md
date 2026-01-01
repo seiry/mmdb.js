@@ -1,4 +1,5 @@
 # mmdb.js
+[![npm version](https://badge.fury.io/js/mmdb.js.svg)](https://badge.fury.io/js/mmdb.js) [![Publish](https://github.com/seiry/mmdb.js/actions/workflows/release.yml/badge.svg)](https://github.com/seiry/mmdb.js/actions/workflows/release.yml)
 
 Could running in broswer env.
 
