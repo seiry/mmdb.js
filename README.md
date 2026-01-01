@@ -32,6 +32,7 @@ Supported response types:
 - CountryResponse
 - CityResponse
 - AnonymousIPResponse
+- AnonymousPlusResponse
 - AsnResponse
 - ConnectionTypeResponse
 - DomainResponse
@@ -65,4 +66,16 @@ MIT
 
 ## Contributing
 
-add a link
+All contributions are welcome. Please make sure to add tests for your changes.
+
+You need to initialise the repository with the following command:
+
+```shell
+git submodule update --init --recursive
+```
+
+Then you can run tests with:
+
+```shell
+npm test
+```

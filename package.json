@@ -13,10 +13,11 @@
   "author": "Dmitry Shirokov <deadrunk@gmail.com>",
   "contributors": [
     "William Storey @horgh",
-    "Uman Shahzad @UmanShahzad"
+    "Uman Shahzad @UmanShahzad",
+    "Gregory Oschwald @oschwald"
   ],
   "devDependencies": {
-    "@types/ip-address": "6.0.0",
+    "@types/ip-address": "7.0.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "20.9.0",
     "@types/sinon": "17.0.1",
@@ -29,7 +30,7 @@
     "release-it": "^17.0.0",
     "sinon": "17.0.1",
     "ts-node": "^10.4.0",
-    "typescript": "5.2.2"
+    "typescript": "5.9.3"
   },
   "repository": {
     "type": "git",
@@ -50,11 +51,11 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf lib/* && tsc",
-    "lint": "eslint . --ext .ts",
-    "lint:types": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "test": "mocha",
-    "test-imports": "node test/imports/commonjs.js && node test/imports/esm.mjs && ts-node test/imports/typescript.ts",
+    "test:imports": "node test/imports/commonjs.js && node test/imports/esm.mjs && ts-node test/imports/typescript.ts",
     "format": "prettier --write src",
+    "format:check": "prettier --check src",
     "prepublish": "npm run build",
     "release": "release-it"
   },

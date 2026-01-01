@@ -91,10 +91,10 @@ describe('mmdb lib', () => {
             float: 0,
             int32: 0,
             map: {},
-            uint128: 0,
+            uint128: 0n,
             uint16: 0,
             uint32: 0,
-            uint64: 0,
+            uint64: 0n,
             utf8_string: '',
           },
         },
@@ -117,10 +117,10 @@ describe('section: data', () => {
       float: 1.100000023841858,
       int32: -268435456,
       map: { mapX: { arrayX: [7, 8, 9], utf8_stringX: 'hello' } },
-      uint128: '1329227995784915872903807060280344576',
+      uint128: 1329227995784915872903807060280344576n,
       uint16: 100,
       uint32: 268435456,
-      uint64: '1152921504606846976',
+      uint64: 1152921504606846976n,
       utf8_string: 'unicode! ☯ - ♫',
     });
   });
@@ -135,10 +135,10 @@ describe('section: data', () => {
       float: 0,
       int32: 0,
       map: {},
-      uint128: 0,
+      uint128: 0n,
       uint16: 0,
       uint32: 0,
-      uint64: 0,
+      uint64: 0n,
       utf8_string: '',
     });
   });
@@ -218,10 +218,10 @@ describe('getWithPrefixLength', () => {
         utf8_stringX: 'hello',
       },
     },
-    uint128: '1329227995784915872903807060280344576',
+    uint128: 1329227995784915872903807060280344576n,
     uint16: 0x64,
     uint32: 268435456,
-    uint64: '1152921504606846976',
+    uint64: 1152921504606846976n,
     utf8_string: 'unicode! ☯ - ♫',
   };
   const tests = [

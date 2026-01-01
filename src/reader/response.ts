@@ -67,6 +67,7 @@ interface TraitsRecord {
   readonly is_anonymous?: boolean;
   readonly is_anonymous_proxy?: boolean;
   readonly is_anonymous_vpn?: boolean;
+  readonly is_anycast?: boolean;
   readonly is_hosting_provider?: boolean;
   readonly is_legitimate_proxy?: boolean;
   readonly is_public_proxy?: boolean;
@@ -123,6 +124,12 @@ export interface AnonymousIPResponse {
   readonly is_tor_exit_node?: boolean;
 }
 
+export interface AnonymousPlusResponse extends AnonymousIPResponse {
+  readonly anonymizer_confidence?: number;
+  readonly network_last_seen?: string;
+  readonly provider_name?: string;
+}
+
 export interface AsnResponse {
   readonly autonomous_system_number: number;
   readonly autonomous_system_organization: string;
@@ -150,6 +157,7 @@ export type Response =
   | CountryResponse
   | CityResponse
   | AnonymousIPResponse
+  | AnonymousPlusResponse
   | AsnResponse
   | ConnectionTypeResponse
   | DomainResponse

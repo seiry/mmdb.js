@@ -35,14 +35,15 @@ export const parseMetadata = (db: Buffer): Metadata => {
     );
   }
 
-
-    [24, 28, 32].indexOf(metadata.record_size) > -1
-
+  utils.assert(
+    [24, 28, 32].indexOf(metadata.record_size) > -1,
+    'Unsupported record size'
+  );
 
   return {
     binaryFormatMajorVersion: metadata.binary_format_major_version,
     binaryFormatMinorVersion: metadata.binary_format_minor_version,
-    buildEpoch: new Date(metadata.build_epoch * 1000),
+    buildEpoch: new Date(Number(metadata.build_epoch) * 1000),
     databaseType: metadata.database_type,
     description: metadata.description,
     ipVersion: metadata.ip_version,
